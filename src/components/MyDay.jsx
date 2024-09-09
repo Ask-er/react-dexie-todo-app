@@ -1,10 +1,11 @@
 import moment from "moment";
 import { InputIconField } from "./Ui/Input";
-import db, { addTodo, getList } from "../db/db";
+import db from "../db/db";
 import { formatDate, formatFloat } from "../utils/format";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useEffect, useState } from "react";
 import ToDoItem from "./TodoItem";
+import { inputAddTodo } from "../utils/taskUtils";
 
 export default function MyDay() {
   const [tasks, setTasks] = useState(0);
@@ -23,15 +24,7 @@ export default function MyDay() {
   }, [todos]);
 
   const addTask = async (val, activeList) => {
-    if (val.length !== 0) {
-      const primaryKey = await getList(activeList);
-      await addTodo({
-        title: val,
-        listId: primaryKey.id,
-        checked: false,
-        date: formatDate(new Date()),
-      });
-    }
+    inputAddTodo(val, activeList, date.format("DD/MM/YYYY"));
   };
 
   return (

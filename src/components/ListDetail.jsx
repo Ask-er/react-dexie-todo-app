@@ -1,14 +1,15 @@
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import { json } from "react-router-dom";
-import db, { getList, addTodo } from "../db/db";
+import db, { getList } from "../db/db";
 import { useLiveQuery } from "dexie-react-hooks";
 import ToDoItem from "./TodoItem";
 import { GoGoal as Myday } from "react-icons/go";
 import { InputIconField } from "./Ui/Input";
 import { formatDate } from "../utils/format";
 import Tooltip from "./Ui/ToolTip";
-import { remove } from "dexie";
+import { addInputTask } from "../utils/taskUtils";
+
 const ListDetail = () => {
   const [selectedTodo, setSelectedTodo] = useState(null);
   const data = useLoaderData();
@@ -19,15 +20,7 @@ const ListDetail = () => {
   );
 
   async function addTodayTask(val, activeList) {
-    if (val.length !== 0) {
-      const primaryKey = await getList(activeList);
-      await addTodo({
-        title: val,
-        listId: primaryKey.id,
-        checked: false,
-        date: formatDate(new Date()),
-      });
-    }
+    addInputTask(val, activeList, formatDate(new Date()));
   }
   async function handleEvent(todoId) {
     await db.todos.update(todoId, { date: null });

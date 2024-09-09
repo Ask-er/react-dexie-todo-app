@@ -1,23 +1,15 @@
 import { useLiveQuery } from "dexie-react-hooks";
-import db, { addTodo, getList } from "../db/db";
+import db from "../db/db";
 import ToDoItem from "./TodoItem";
 import { InputIconField } from "./Ui/Input";
-
+import { addInputTask } from "../utils/taskUtils";
 export default function ToDoCardBody({ date }) {
   const todos = useLiveQuery(
     () => db.todos.where("date").equals(date.format("DD/MM/YYYY")).toArray(),
     [date]
   );
   async function addTask(val, activeList) {
-    if (val.length !== 0) {
-      const primaryKey = await getList(activeList);
-      await addTodo({
-        title: val,
-        listId: primaryKey.id,
-        checked: false,
-        date: date.format("DD/MM/YYYY"),
-      });
-    }
+    addInputTask(val, activeList, date.format("DD/MM/YYYY"));
   }
   return (
     <div className="flex flex-col mt-6 flex-1 overflow-hidden">
