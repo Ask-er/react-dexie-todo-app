@@ -1,0 +1,172 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+@layer base {
+  :root {
+    --text: #050315;
+    --textgray: #6b6b6b;
+    --background: #fbfbfe;
+    --backgroundL1: #e6eef5;
+    --backgroundL2: #212327;
+    --backgroundL3: #2c3035;
+    --secondary: #363853;
+    --accent: #1089e0;
+    --hover: #6bb6eb;
+  }
+  .dark {
+    --text: #e4e4e4;
+    --textgray: #a2a2a2;
+    --background: #101114;
+    --backgroundL1: #16181d;
+    --backgroundL2: #212327;
+    --backgroundL3: #2c3035;
+    --secondary: #363853;
+    --accent: #1089e0;
+    --hover: #6bb6eb;
+  }
+}
+@layer utilities {
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}
+
+@layer components {
+  .sidebar {
+    @apply top-0 left-0 h-screen w-80 flex flex-col text-text
+    bg-white dark:bg-background shadow-lg;
+  }
+  .sidebar-item {
+    @apply flex w-full h-16 justify-start items-center pl-4
+    transition-all duration-300 ease-linear
+    cursor-pointer text-textgray hover:bg-backgroundL1;
+  }
+  .sidebar-item.active {
+    @apply text-primary-400 pl-8 
+    rounded-md;
+  }
+  .sidebar-icon {
+    @apply relative flex items-center justify-center 
+    h-12 w-12 mt-2 mb-2 
+    bg-gray-200/70 dark:bg-gray-800/70 text-text
+    rounded-3xl
+    transition-all duration-300 ease-linear
+    cursor-pointer shadow-lg group-hover:ml-4;
+  }
+  .sidebar-item:hover .sidebar-icon {
+    @apply bg-gray-300 dark:bg-primary-500 rounded-xl;
+  }
+  .sidebar-title {
+    @apply ml-2  text-xl font-bold;
+  }
+  .sidebar-hr {
+    @apply border border-gray-200 dark:border-gray-400 rounded-full
+    mx-2;
+  }
+  /* topNavigasyon */
+  .top-navigation {
+    @apply flex flex-row items-center justify-evenly
+    bg-white dark:bg-background
+    w-full h-16 m-0 
+    shadow-lg;
+  }
+
+  .top-navigation-icon {
+    @apply text-textgray
+    mr-3 ml-4
+    transition duration-300 ease-in-out 
+    hover:text-primary-400 
+    cursor-pointer;
+  }
+
+  .top-navigation-icon:first {
+    @apply ml-auto mr-4;
+  }
+
+  .title-hashtag {
+    @apply text-lg tracking-wider font-semibold text-primary-400 
+    ml-2 my-auto;
+  }
+
+  .title-text {
+    @apply text-xl text-textgray tracking-wider font-semibold
+    mr-auto ml-2 my-auto 
+    transition-colors duration-300 ease-in-out;
+  }
+
+  .search {
+    @apply w-1/5 flex items-center justify-start 
+    bg-backgroundL1
+    text-textgray
+    px-2 h-9 ml-0 mr-4 
+    rounded-md shadow-md
+    transition-colors duration-300 ease-in-out;
+  }
+
+  .search-input {
+    @apply w-full font-sans font-semibold
+    bg-transparent outline-none 
+    text-textgray placeholder-gray-500
+    pl-1 rounded;
+  }
+
+  .content-container {
+    @apply flex flex-col 
+    m-0 
+    h-screen w-full 
+    overflow-hidden;
+  }
+
+  /* TodoCard */
+  .todo-card {
+    @apply flex flex-col 
+    bg-backgroundL1 text-text border
+     border-gray-200  rounded-lg shadow-lg dark:border-backgroundL2;
+  }
+
+  .dropdown {
+    @apply absolute z-10 list-none bg-white divide-y divide-gray-100 dark:divide-gray-600 rounded-lg shadow w-40 dark:bg-backgroundL2;
+  }
+  .dropdown-header {
+    @apply flex items-center px-4 py-2 
+    text-lg text-text font-semibold border-b border-gray-100 dark:border-gray-600;
+  }
+  .dropdown-item-button {
+    @apply flex items-center justify-between px-4 py-2 
+    text-base text-text w-full text-left hover:bg-backgroundL3;
+  }
+
+  .dropdown-item {
+    @apply flex items-center px-4 py-2 
+    text-sm text-text hover:bg-gray-100
+    dark:hover:bg-backgroundL3
+    w-full text-left cursor-pointer;
+  }
+
+  /* myDay*/
+  .glasscard {
+    @apply bg-backgroundL1 rounded-lg
+    text-text;
+  }
+}
