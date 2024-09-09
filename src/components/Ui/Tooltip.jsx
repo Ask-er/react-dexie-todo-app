@@ -13,14 +13,9 @@ export default function Tooltip({ message, children }) {
         const viewportWidth = window.innerWidth;
 
         // Calculate the distance to the left and right edges of the viewport
-        const distanceToLeftEdge = left;
+
         const distanceToRightEdge = viewportWidth - right;
-        console.log(
-          viewportWidth,
-          distanceToLeftEdge,
-          distanceToRightEdge,
-          tooltipRef.current.offsetWidth
-        );
+
         // Adjust the tooltip position based on the calculated distance
         if (distanceToRightEdge < tooltipRef.current.offsetWidth) {
           tooltipRef.current.style.left = "auto";

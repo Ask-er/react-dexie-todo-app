@@ -33,6 +33,7 @@ function App() {
               path: "lists/:listTitle",
               element: <ListDetail />,
               loader: loadList,
+              children: [{ path: "tasks/:taskId", element: <ToDoList /> }],
             },
           ],
         },

@@ -3,6 +3,7 @@ import { formatDate } from "./format";
 
 // Function to add a new task
 export async function inputAddTodo(val, activeList, date) {
+  const today = formatDate(new Date()) === date ? "true" : "false";
   if (val.length !== 0) {
     const primaryKey = await getList(activeList);
     await addTodo({
@@ -10,7 +11,8 @@ export async function inputAddTodo(val, activeList, date) {
       listId: primaryKey.id,
       checked: false,
       date: date,
-      today: formatDate(new Date()) === date,
+      today: today,
+      notes: "",
     });
   }
 }

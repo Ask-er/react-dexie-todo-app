@@ -1,8 +1,9 @@
 import Dexie from "dexie";
 const db = new Dexie("TodoDB");
 db.version(1).stores({
-  todos: "++id, listId, title, checked, date, today",
+  todos: "++id, listId, title, checked, date, today, notes",
   lists: "++id, title",
+  subtodo: "++id, todoId, title, checked",
 });
 async function initializeLists() {
   const count = await db.lists.count();

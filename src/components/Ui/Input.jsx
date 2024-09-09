@@ -8,6 +8,7 @@ import {
 } from "./Dropdown";
 import db from "../../db/db";
 import { useLiveQuery } from "dexie-react-hooks";
+
 export function InputIconField({ handleTrack }) {
   const [val, setVal] = useState("");
   const [activeList, setActiveList] = useState("Personal");
@@ -62,6 +63,40 @@ export function InputIconField({ handleTrack }) {
         size={16}
         className=" text-gray-400 hover:text-primary-400 mr-2"
         onClick={handleTrack}
+      />
+    </div>
+  );
+}
+
+export function InputPlaceholder({ selectedTodo }) {
+  const [inputNoteValue, setInputNoteValue] = useState("");
+  const handleUpdateNote = async () => {
+    if (selectedTodo) {
+      await db.todos.update(selectedTodo.id, { notes: inputNoteValue });
+    }
+    setInputNoteValue("");
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleUpdateNote();
+    }
+  };
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder={
+          selectedTodo?.notes === ""
+            ? "Insert your notes here"
+            : selectedTodo?.notes
+        }
+        value={inputNoteValue}
+        onChange={(e) => setInputNoteValue(e.target.value)}
+        onFocus={() => setInputNoteValue(selectedTodo?.notes)}
+        onKeyDown={handleKeyDown}
+        onBlur={handleUpdateNote}
+        className="bg-transparent w-full pt-2 mb-4 focus:outline-none text-xl text-gray-600 placeholder:text-gray-600 ml-8"
       />
     </div>
   );

@@ -87,7 +87,7 @@ export const DropdownWrapper = ({
   };
 
   return (
-    <div ref={dropdownRef} className="relative">
+    <div ref={dropdownRef} className="relative inline-block">
       <div onClick={handleToggleDropdown}>{icon}</div>
       {showDropdown && (
         <DropdownList position={position} height={height} weight={weight}>

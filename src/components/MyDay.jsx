@@ -1,7 +1,7 @@
 import moment from "moment";
 import { InputIconField } from "./Ui/Input";
 import db from "../db/db";
-import { formatDate, formatFloat } from "../utils/format";
+import { formatFloat } from "../utils/format";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useEffect, useState } from "react";
 import ToDoItem from "./TodoItem";
@@ -15,7 +15,7 @@ export default function MyDay() {
   const dayOfMonth = date.format("DD");
   const month = date.format("MMMM");
   const todos = useLiveQuery(() =>
-    db.todos.where("date").equals(formatDate(new Date())).toArray()
+    db.todos.where("today").equals("true").toArray()
   );
 
   useEffect(() => {
