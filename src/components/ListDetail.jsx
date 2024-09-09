@@ -8,7 +8,6 @@ import { GoGoal as Myday } from "react-icons/go";
 import { InputIconField } from "./Ui/Input";
 import { formatDate } from "../utils/format";
 import Tooltip from "./Ui/ToolTip";
-import { remove } from "dexie";
 const ListDetail = () => {
   const [selectedTodo, setSelectedTodo] = useState(null);
   const data = useLoaderData();
