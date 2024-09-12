@@ -6,7 +6,7 @@ export default function Checkbox({ checked, onChange }) {
       type="checkbox"
       checked={checked}
       onChange={onChange}
-      className={`${styles.checkbox} ${styles.rounded}`}
+      className={`${styles.checkbox} ${styles.rounded} `}
     />
   );
 }

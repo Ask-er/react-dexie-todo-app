@@ -1,10 +1,11 @@
 import Error from "./components/Error";
 import Layout from "./components/Layout";
-import MyDay from "./components/MyDay";
-import ToDoList from "./components/ToDoList";
+import MyDayPage from "./pages/MyDayPage";
+import Next7TodoPage from "./pages/Next7TodoPage";
+import ListDetailPage, { loadList } from "./pages/ListDetailPage";
+import ItemDetailPage, { loadTodo } from "./pages/ItemDetailPage";
 import { Navigate } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ListDetail, { loadList } from "./components/ListDetail";
 
 function App() {
   const router = createBrowserRouter([
@@ -14,7 +15,7 @@ function App() {
       children: [
         {
           path: "myday",
-          element: <MyDay />,
+          element: <MyDayPage />,
         },
         {
           path: "tasks",
@@ -26,14 +27,23 @@ function App() {
             },
             {
               path: "next-7-days",
-              element: <ToDoList />,
+              element: <Next7TodoPage />,
             },
-            { path: "allmytasks", element: <ToDoList /> },
             {
               path: "lists/:listTitle",
-              element: <ListDetail />,
+              element: <ListDetailPage />,
               loader: loadList,
-              children: [{ path: "tasks/:taskId", element: <ToDoList /> }],
+              children: [
+                {
+                  path: "tasks",
+                  element: <Navigate to=".." replace relative="path" />,
+                },
+                {
+                  path: "tasks/:todoId",
+                  element: <ItemDetailPage />,
+                  loader: loadTodo,
+                },
+              ],
             },
           ],
         },

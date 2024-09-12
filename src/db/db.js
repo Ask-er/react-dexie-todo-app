@@ -25,4 +25,10 @@ export async function addList(title) {
 export async function getList(activeList) {
   return db.lists.where("title").equals(activeList).first();
 }
+export async function getListById(id) {
+  return db.lists.get(id);
+}
+export async function getTodo(id) {
+  return db.todos.get(id);
+}
 export default db;

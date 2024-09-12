@@ -25,9 +25,9 @@ body {
     --textgray: #6b6b6b;
     --background: #fbfbfe;
     --backgroundL1: #e6eef5;
-    --backgroundL2: #212327;
-    --backgroundL3: #2c3035;
-    --secondary: #363853;
+    --backgroundL2: #d1deec;
+    --backgroundL3: #b1c9dc;
+    --secondary: #6bb6eb;
     --accent: #1089e0;
     --hover: #6bb6eb;
   }
@@ -77,6 +77,7 @@ body {
   .sidebar-item:hover .sidebar-icon {
     @apply bg-gray-300 dark:bg-primary-500 rounded-xl;
   }
+
   .sidebar-title {
     @apply ml-2  text-xl font-bold;
   }
@@ -162,11 +163,5 @@ body {
     text-sm text-text hover:bg-gray-100
     dark:hover:bg-backgroundL3
     w-full text-left cursor-pointer;
-  }
-
-  /* myDay*/
-  .glasscard {
-    @apply bg-backgroundL1 rounded-lg
-    text-text;
   }
 }

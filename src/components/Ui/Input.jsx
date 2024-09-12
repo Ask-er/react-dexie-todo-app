@@ -1,6 +1,6 @@
 import { CiViewList } from "react-icons/ci";
 import { FaArrowUp } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DropdownWrapper,
   DropdownHeader,
@@ -9,10 +9,22 @@ import {
 import db from "../../db/db";
 import { useLiveQuery } from "dexie-react-hooks";
 
-export function InputIconField({ handleTrack }) {
+export function InputField({ handleTrack, currentList }) {
   const [val, setVal] = useState("");
-  const [activeList, setActiveList] = useState("Personal");
+  const [activeList, setActiveList] = useState(currentList);
   const lists = useLiveQuery(() => db.lists.toArray());
+  useEffect(() => {
+    async function fetchData() {
+      const lists = await db.lists.toArray();
+      if (!currentList && lists) {
+        setActiveList(lists[0]?.title);
+      } else {
+        setActiveList(currentList);
+      }
+    }
+    fetchData();
+  }, [currentList]);
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleTrack(val, activeList);
@@ -68,33 +80,24 @@ export function InputIconField({ handleTrack }) {
   );
 }
 
-export function InputPlaceholder({ selectedTodo }) {
-  const [inputNoteValue, setInputNoteValue] = useState("");
+export function InputPlaceholder({ todo }) {
+  const [inputNoteValue, setInputNoteValue] = useState(todo?.notes);
   const handleUpdateNote = async () => {
-    if (selectedTodo) {
-      await db.todos.update(selectedTodo.id, { notes: inputNoteValue });
-    }
-    setInputNoteValue("");
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handleUpdateNote();
+    if (todo) {
+      await db.todos.update(todo.id, { notes: inputNoteValue });
     }
   };
+  useEffect(() => {
+    setInputNoteValue(todo?.notes);
+  }, [todo]);
   return (
     <div>
       <input
         type="text"
-        placeholder={
-          selectedTodo?.notes === ""
-            ? "Insert your notes here"
-            : selectedTodo?.notes
-        }
+        placeholder={!todo?.notes ? "Insert your notes here" : todo?.notes}
         value={inputNoteValue}
         onChange={(e) => setInputNoteValue(e.target.value)}
-        onFocus={() => setInputNoteValue(selectedTodo?.notes)}
-        onKeyDown={handleKeyDown}
+        onFocus={() => setInputNoteValue(todo?.notes)}
         onBlur={handleUpdateNote}
         className="bg-transparent w-full pt-2 mb-4 focus:outline-none text-xl text-gray-600 placeholder:text-gray-600 ml-8"
       />

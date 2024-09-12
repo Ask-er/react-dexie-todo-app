@@ -11,7 +11,6 @@ export default function Layout() {
       <div className="hidden md:flex dark:bg-background bg-white transition-colors duration-300">
         <Sidebar />
         <main className="content-container">
-          {/* <Blob /> */}
           <TopNavigation />
           <Suspense fallback={<div>Loading...</div>}>
             <Outlet />

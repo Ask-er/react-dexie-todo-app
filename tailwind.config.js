@@ -33,7 +33,11 @@ export default {
       animation: {
         blob: "blob 10s infinite",
         fadeIn: "fadeIn 0.5s ease-in-out",
-        slideIn: "slide-in-from-top 0.35s ease-out",
+        slideInFromLeft: "slide-in-from-left 0.35s ease-out",
+        slideInFromRight: "slide-in-from-right 0.35s ease-out",
+        slideOutToRight: "slide-out-to-right 0.35s ease-out",
+        roadRunnerIn:
+          "roadRunnerIn 0.3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards",
       },
       keyframes: {
         fadeIn: {
@@ -46,7 +50,7 @@ export default {
             transform: "translateY(0)",
           },
         },
-        "slide-in-from-top": {
+        "slide-in-from-left": {
           "0%": {
             transform: "translateX(-15%)",
             opacity: "0",
@@ -54,6 +58,37 @@ export default {
           "100%": {
             transform: "translateX(0)",
             opacity: "1",
+          },
+        },
+        "slide-in-from-right": {
+          "0%": {
+            transform: "translateX(15%)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateX(0)",
+            opacity: "1",
+          },
+        },
+        "slide-out-to-right": {
+          "0%": {
+            transform: "translateX(0)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "translateX(15%)",
+            opacity: "0",
+          },
+        },
+        roadRunnerIn: {
+          "0%": {
+            transform: "translateX(-1500px) skewX(30deg) scaleX(1.3)",
+          },
+          "70%": {
+            transform: "translateX(30px) skewX(0deg) scaleX(.9)",
+          },
+          "100%": {
+            transform: "translateX(0px) skewX(0deg) scaleX(1)",
           },
         },
       },

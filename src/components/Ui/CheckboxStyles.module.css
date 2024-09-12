@@ -10,8 +10,8 @@
   border: var(--borderWidth) solid var(--borderColor);
   border-radius: var(--borderRadius, 0.2em);
   box-sizing: border-box;
-  font-size: 2em;
-  margin: var(--_m, 0.1875em 0.1875em 0.1875em 0.25em);
+  font-size: 1.5em;
+
   position: relative;
   width: 1em;
 

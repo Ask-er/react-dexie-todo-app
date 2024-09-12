@@ -10,13 +10,16 @@ export default function AddListModal({ show, onCloseButtonClick }) {
     }
     const capitalizedListName =
       listName.charAt(0).toUpperCase() + listName.slice(1).toLowerCase();
-    const promise = await addList(capitalizedListName);
+    await addList(capitalizedListName);
     onCloseButtonClick();
-    console.log(promise);
   }
   return (
-    <Modal show={show} onCloseButtonClick={onCloseButtonClick}>
-      <div className="flex flex-col">
+    <Modal
+      show={show}
+      onCloseButtonClick={onCloseButtonClick}
+      className={"w-1/3 max-h-[calc(90vh)]"}
+    >
+      <div className="flex flex-col bg-backgroundL1 p-4 rounded shadow-lg">
         <button
           onClick={onCloseButtonClick}
           className="ml-auto text-text text-lg hover:text-primary-400"

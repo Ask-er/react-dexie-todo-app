@@ -35,8 +35,15 @@ const Search = () => (
 );
 const HashtagIcon = () => <FaHashtag size="20" className="title-hashtag" />;
 const Title = ({ title }) => {
-  title = title.split("/").pop();
-  return <h5 className="title-text">{title}</h5>;
+  const navigation = title.split("/");
+  let header;
+  if (!isNaN(Number(navigation[navigation.length - 1]))) {
+    header = navigation[navigation.length - 3];
+  } else {
+    header = navigation.pop();
+  }
+
+  return <h5 className="title-text">{header}</h5>;
 };
 
 export default TopNavigation;

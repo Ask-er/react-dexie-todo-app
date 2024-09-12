@@ -30,7 +30,7 @@ export default function Sidebar() {
     const result = await db.todos.where("listId").equals(id).delete();
     await db.lists.delete(id);
 
-    console.log(result);
+    result;
   }
   return (
     <>
@@ -51,8 +51,13 @@ export default function Sidebar() {
         />
         <div className="flex flex-col pl-4">
           <div className="flex items-center">
-            <SideBarIcon icon={<CiViewList size="28" />} />
-            <h1 className="sidebar-title text-textgray">My lists</h1>
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={toggleDropdown}
+            >
+              <SideBarIcon icon={<CiViewList size="28" />} />
+              <h1 className="sidebar-title text-textgray">My lists</h1>
+            </div>
             <div className="ml-auto mr-2 cursor-pointer flex gap-1">
               <FiPlus
                 size="24"
@@ -73,11 +78,15 @@ export default function Sidebar() {
               {lists?.map((list, key) => (
                 <div
                   key={key}
-                  className="group flex text-textgray text-lg pl-6 mr-6 rounded-md hover:bg-backgroundL1 transition duration-200 transform hover:scale-105 animate-slideIn"
+                  className="group flex text-textgray text-lg pl-6 mr-6 rounded-md hover:bg-backgroundL1 transition duration-200 transform hover:scale-105 animate-slideInFromLeft"
                 >
                   <NavLink
                     to={`/tasks/lists/${list.title}`}
-                    className="w-full hover:text-primary-400"
+                    className={({ isActive }) =>
+                      `${
+                        isActive ? "scale-105 text-primary-400" : ""
+                      } w-full hover:text-primary-400`
+                    }
                   >
                     {list.title}
                   </NavLink>
@@ -95,24 +104,25 @@ export default function Sidebar() {
 
         <span className="flex-1"></span>
         <Divider />
-        <div className="sidebar-item">
-          <SideBarIcon icon={<BsGear size="28" />} />
-          <h1 className="sidebar-title">Setting</h1>
-        </div>
+        <SideBarItem icon={<BsGear size="28" />} title="Setting" />
       </div>
     </>
   );
 }
 const SideBarItem = ({ icon, title, link }) => (
-  <NavLink to={link} className="sidebar-item">
-    <SideBarIcon icon={icon} />
-    <h1 className={"sidebar-title"}>{title}</h1>
-  </NavLink>
+  <>
+    {link ? (
+      <NavLink to={link} className="sidebar-item">
+        <SideBarIcon icon={icon} />
+        <h1 className={"sidebar-title"}>{title}</h1>
+      </NavLink>
+    ) : (
+      <div className="sidebar-item">
+        <SideBarIcon icon={icon} />
+        <h1 className={"sidebar-title"}>{title}</h1>
+      </div>
+    )}
+  </>
 );
-const SideBarIcon = ({ icon }) => (
-  <div className="sidebar-icon">
-    {icon} {/* This is where the icon prop is used */}
-  </div>
-);
+const SideBarIcon = ({ icon }) => <div className="sidebar-icon">{icon}</div>;
 const Divider = () => <hr className="sidebar-hr" />;
-/* ({ isActive }) => (isActive ? "" : "") */

@@ -1,23 +1,26 @@
-import { createPortal } from "react-dom";
-
-export default function TodoModal({ show, onCloseButtonClick }) {
-  if (!show) {
-    return null;
-  }
-  return createPortal(
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white p-4 rounded shadow-lg w-1/3">
-        <h2 className="text-xl mb-4">Todo Details</h2>
-        <p>Title: </p>
-        <p>List: </p>
-        <button
+import ToDoDetail from "../ToDoDetail";
+import Modal from "../Ui/Modal";
+import { IoRemoveOutline } from "react-icons/io5";
+export default function TodoModal({
+  show,
+  onCloseButtonClick,
+  todo,
+  listTitle,
+}) {
+  return (
+    <Modal
+      show={show}
+      onCloseButtonClick={onCloseButtonClick}
+      className="w-1/2 h-1/2"
+    >
+      <div className="bg-backgroundL1 py-5 pl-12 pr-14 rounded shadow-lg w-full relative">
+        <ToDoDetail todo={todo} listTitle={listTitle} />
+        <IoRemoveOutline
           onClick={onCloseButtonClick}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-        >
-          Close
-        </button>
+          size={24}
+          className="absolute top-5 right-4 text-text hover:text-primary-400"
+        />
       </div>
-    </div>,
-    document.body
+    </Modal>
   );
 }

@@ -1,7 +1,7 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import db from "../db/db";
-import ToDoItem from "./TodoItem";
-import { InputIconField } from "./Ui/Input";
+import ToDoItem from "./ToDoItem";
+import { InputField } from "./Ui/Input";
 import { inputAddTodo } from "../utils/taskUtils";
 export default function ToDoCardBody({ date }) {
   const todos = useLiveQuery(
@@ -20,19 +20,12 @@ export default function ToDoCardBody({ date }) {
             .reverse()
             .sort((a, b) => a.checked - b.checked)
             .map((todo, key) => (
-              <ToDoItem
-                key={key}
-                title={todo.title}
-                id={todo.id}
-                listId={todo.listId}
-                checked={todo.checked}
-                styless="bgHoverLight"
-              />
+              <ToDoItem key={key} todo={todo} styless="bgL2" />
             ))}
         </div>
       </div>
       <div className="my-4">
-        <InputIconField handleTrack={addTask} />
+        <InputField handleTrack={addTask} />
       </div>
     </div>
   );
