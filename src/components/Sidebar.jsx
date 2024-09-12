@@ -4,7 +4,6 @@ import { CiCircleChevLeft, CiViewList, CiCalendar } from "react-icons/ci";
 import { FiPlus } from "react-icons/fi";
 import { GoGoal as Myday } from "react-icons/go";
 import { NavLink } from "react-router-dom";
-
 import { useState } from "react";
 import useModal from "../hooks/useModal";
 import { useLiveQuery } from "dexie-react-hooks";
@@ -40,7 +39,7 @@ export default function Sidebar() {
           <i className="sidebar-icon">
             <img src={logo} alt="home" />
           </i>
-          <h1 className="">Daily/Todo</h1>
+          <h1 className="text-2xl font-bold pl-2">DoilyTodo</h1>
         </div>
 
         <SideBarItem icon={<Myday size="24" />} title="My Day" link="/myday" />
