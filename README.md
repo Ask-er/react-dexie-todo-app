@@ -11,7 +11,7 @@ This is a simple Todo application built with React and Dexie.js. The application
 
 ## Screenshots
 
-![Myday page](assets/photos/myday.png)
+![Myday page](public/assets/photos/myday.png)
 
 ## Getting Started
 
