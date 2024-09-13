@@ -1,6 +1,7 @@
 import { FaSearch, FaHashtag, FaMoon, FaSun } from "react-icons/fa";
 import useDarkMode from "../hooks/useDarkMode";
 import { useLocation } from "react-router-dom";
+import Tooltip from "./Ui/Tooltip";
 const TopNavigation = () => {
   const location = useLocation();
   return (

@@ -9,6 +9,7 @@ import useModal from "../hooks/useModal";
 import { useLiveQuery } from "dexie-react-hooks";
 import db from "../db/db";
 import AddListModal from "./Modals/AddListModal";
+import Tooltip from "./Ui/Tooltip";
 const Week = () => (
   <div className="relative flex items-center justify-center">
     <CiCalendar size="28" />
@@ -103,7 +104,9 @@ export default function Sidebar() {
 
         <span className="flex-1"></span>
         <Divider />
-        <SideBarItem icon={<BsGear size="28" />} title="Setting" />
+        <Tooltip message="This feature will be added in a future update.">
+          <SideBarItem icon={<BsGear size="28" />} title="Setting" />
+        </Tooltip>
       </div>
     </>
   );
