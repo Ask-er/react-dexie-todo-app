@@ -21,7 +21,7 @@ export default function ListDetailPage() {
   return (
     <div className="h-screen w-full flex">
       <div className="flex flex-col m-8 overflow-hidden w-1/2 bg-backgroundL1 rounded-xl max-h-[calc(100vh-150px)]">
-        <div className="mt-4 overflow-scroll flex flex-col gap-3 max-h-[calc(90vh-150px)]">
+        <div className="mt-4 overflow-hidden flex flex-col gap-3 max-h-[calc(90vh-150px)]">
           {todos
             ?.slice()
             .reverse()
@@ -50,7 +50,7 @@ export default function ListDetailPage() {
         </div>
       </div>
       <Suspense fallback={<div>Loading...</div>}>
-        <div className="w-1/2 bg-backgroundL1 m-8 rounded-xl text-sm max-h-[calc(100vh-150px)] overflow-y-scroll overflow-x-hidden animate-fadeIn">
+        <div className="w-1/2 bg-backgroundL1 m-8 rounded-xl text-sm max-h-[calc(100vh-150px)] custom-scrollbar overflow-x-hidden animate-fadeIn">
           <Outlet />
         </div>
       </Suspense>

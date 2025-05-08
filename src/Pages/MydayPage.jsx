@@ -31,8 +31,8 @@ export default function MyDayPage() {
         <TodaysDate day={day} dayOfMonth={dayOfMonth} month={month} />
         <ProgressSummary todos={todos} />
       </div>
-      <div className="flex flex-col mt-8 flex-1 overflow-hidden">
-        <div className="flex flex-col justify-start overflow-scroll gap-2 flex-1">
+      <div className="flex flex-col mt-8 flex-1 custom-scrollbar">
+        <div className="flex flex-col justify-start gap-2 flex-1">
           {todos
             ?.slice()
             .reverse()

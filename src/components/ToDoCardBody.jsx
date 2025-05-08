@@ -12,9 +12,9 @@ export default function ToDoCardBody({ date }) {
     inputAddTodo(val, activeList, date.format("DD/MM/YYYY"));
   }
   return (
-    <div className="flex flex-col mt-6 flex-1 overflow-hidden">
-      <div className="flex flex-col justify-start overflow-scroll gap-2 flex-1">
-        <div className="flex-1 max-h-[calc(88vh-200px)] overflow-scroll flex flex-col gap-2">
+    <div className="flex flex-col mt-6 flex-1">
+      <div className="flex flex-col justify-start gap-2 flex-1">
+        <div className="flex flex-1 flex-col max-h-[calc(88vh-200px)] gap-2 custom-scrollbar">
           {todos
             ?.slice()
             .reverse()
