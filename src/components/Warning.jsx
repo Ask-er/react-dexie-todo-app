@@ -4,7 +4,7 @@ export default function Warning() {
     <div className="flex flex-col h-screen md:hidden justify-center items-center">
       <PiWarningOctagonBold className="text-9xl text-red-500 self-center" />
       <h1 className="text-center text-3xl w-1/2">
-        QuickToDo is a Desktop app. And for now it is not ready to be diplayed
+        QuickToDo is a Desktop app. And for now it is not ready to be displayed
         in this resolution. :/
       </h1>
     </div>
