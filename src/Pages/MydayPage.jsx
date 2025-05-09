@@ -31,17 +31,17 @@ export default function MyDayPage() {
         <TodaysDate day={day} dayOfMonth={dayOfMonth} month={month} />
         <ProgressSummary todos={todos} />
       </div>
-      <div className="flex flex-col mt-8 flex-1 custom-scrollbar">
-        <div className="flex flex-col justify-start gap-2 flex-1">
+      <div className="flex flex-col mt-6 flex-1 max-h-[calc(85vh-200px)]">
+        <div className="flex flex-1 flex-col min-h-16 gap-2 custom-scrollbar">
           {todos
             ?.slice()
             .reverse()
             .sort((a, b) => a.checked - b.checked)
-
             .map((todo, key) => (
-              <ToDoItem key={key} todo={todo} styless="bgL1" />
+              <ToDoItem key={key} todo={todo} styless="bgL2" />
             ))}
         </div>
+
         <div className="my-4">
           <InputField handleTrack={addTask} />
         </div>

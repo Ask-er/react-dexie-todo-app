@@ -2,7 +2,7 @@ import db, { getList } from "../db/db";
 import { Suspense } from "react";
 import { json, useLoaderData, Outlet } from "react-router-dom";
 import { useLiveQuery } from "dexie-react-hooks";
-import ToDoItem from "../components/TodoItem";
+import ToDoItem from "../components/ToDoItem";
 import { InputField } from "../components/Ui/Input";
 import { inputAddTodo } from "../utils/taskUtils";
 import { formatDate } from "../utils/format";
@@ -20,8 +20,8 @@ export default function ListDetailPage() {
   }
   return (
     <div className="h-screen w-full flex">
-      <div className="flex flex-col m-8 overflow-hidden w-1/2 bg-backgroundL1 rounded-xl max-h-[calc(100vh-150px)]">
-        <div className="mt-4 overflow-hidden flex flex-col gap-3 max-h-[calc(90vh-150px)]">
+      <div className="flex flex-col m-8 w-1/2 bg-backgroundL1 rounded-xl">
+        <div className="mt-4 flex flex-col gap-3 max-h-[calc(90vh-100px)] custom-scrollbar">
           {todos
             ?.slice()
             .reverse()
@@ -45,7 +45,7 @@ export default function ListDetailPage() {
               </NavLink>
             ))}
         </div>
-        <div className="mt-auto py-4 bg-backgroundL2 ">
+        <div className="mt-auto mb-2 mx-2">
           <InputField handleTrack={addTodayTask} currentList={listTitle} />
         </div>
       </div>

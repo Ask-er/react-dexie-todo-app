@@ -12,18 +12,17 @@ export default function ToDoCardBody({ date }) {
     inputAddTodo(val, activeList, date.format("DD/MM/YYYY"));
   }
   return (
-    <div className="flex flex-col mt-6 flex-1">
-      <div className="flex flex-col justify-start gap-2 flex-1">
-        <div className="flex flex-1 flex-col max-h-[calc(88vh-200px)] gap-2 custom-scrollbar">
-          {todos
-            ?.slice()
-            .reverse()
-            .sort((a, b) => a.checked - b.checked)
-            .map((todo, key) => (
-              <ToDoItem key={key} todo={todo} styless="bgL2" />
-            ))}
-        </div>
+    <div className="flex flex-col mt-6 flex-1 max-h-[calc(99vh-200px)]">
+      <div className="flex flex-1 flex-col min-h-16 gap-2 custom-scrollbar">
+        {todos
+          ?.slice()
+          .reverse()
+          .sort((a, b) => a.checked - b.checked)
+          .map((todo, key) => (
+            <ToDoItem key={key} todo={todo} styless="bgL2" />
+          ))}
       </div>
+
       <div className="my-4">
         <InputField handleTrack={addTask} />
       </div>
