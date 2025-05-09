@@ -2,7 +2,6 @@
   "name": "todoapp",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://ask-er.github.io/react-dexie-todo-app/",
   "type": "module",
   "scripts": {
     "dev": "vite",
